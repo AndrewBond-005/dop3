@@ -1,0 +1,87 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --border-color: #dee2e6;
+    --hover-button:#fff1c1;
+    --pressed-button:#ffeaa4;
+}
+
+[data-theme="dark"] {
+    --bg-color: #262424;
+    --text-color: #ffffff;
+    --border-color: #b8b8b8;
+    --hover-button:#8e6f00;
+    --pressed-button:#7c5f00;
+}
+[data-theme="dark"] #x:-webkit-autofill {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #2d2d2d inset;
+    border: 2px solid var(--border-color);
+}
+html {
+
+    background-color: var(--bg-color);
+    background-image: url("../images/background.png");
+    background-size: 70px 70px;
+}
+body {
+    color: var(--text-color);
+    padding: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.input-section, .result-section {
+    padding: 15px;
+}
+
+.param {
+    margin: 10px 0;
+    background: var(--bg-color);
+    width: 100%;
+    border: 1px solid var(--border-color);
+}
+
+
+#themeTag {
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    float: right;
+}
+
+#themeTag:hover {
+    background: var(--hover-button);
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+.result-section > :nth-child(2){
+    padding-left: 10px;
+    padding-top: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+}
+.result-section > :nth-child(1){
+    padding-left: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+}
+.filler{
+    width: 30%;
+}
+
+label[for*="inputText"] {
+    display: block;
+    margin-bottom: 5px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+}

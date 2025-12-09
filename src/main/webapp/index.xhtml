@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ta="http://example.com/text-analyzer">
+
+<h:head>
+    <meta charset="utf-8" />
+    <title>ДОП</title>
+    <meta name="author" content="Andrei Bondarenko" />
+    <link rel="icon" type="image/png" href="#{request.contextPath}/favicon.png"/>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+
+<h:body>
+    <button id="themeTag">🌙</button>
+    <div class="container">
+        <div class="input-section">
+            <h:form id="form">
+                    <h:outputLabel for="inputText" value="Текст:" class="label"/>
+                <h:inputTextarea id="inputText"
+                                 value="#{counterBean.inputText}"
+                                 style="width: 100%; height: 300px; box-sizing: border-box; display: block;
+                                  margin-top: 5px;background-color: var(--bg-color); color: var(--text-color);"
+                                 required="true">
+                        <f:ajax event="keyup" render=":result :resultsSection" delay="300" />
+                    </h:inputTextarea>
+                <div class="params">
+                    <div class="param">
+                        <h:selectBooleanCheckbox id="excludeSpaces"
+                                                 value="#{counterBean.excludeSpaces}">
+                            <f:ajax event="change" render=":result :resultsSection" />
+                        </h:selectBooleanCheckbox>
+                        <h:outputLabel for="excludeSpaces" value="Исключить пробелы" style="margin-left: 8px;" />
+                    </div>
+
+                    <div class="param">
+                        <h:outputLabel value="Показать:" />
+                            <h:selectOneRadio id="show"
+                                              value="#{counterBean.show}"
+                                              layout="pageDirection">
+                                <f:selectItem itemValue="all" itemLabel="Всё" />
+                                <f:selectItem itemValue="lines" itemLabel="Только строки" />
+                                <f:selectItem itemValue="words" itemLabel="Только слова" />
+                                <f:selectItem itemValue="chars" itemLabel="Только символы" />
+                                <f:ajax event="change" render=":result :resultsSection" />
+                            </h:selectOneRadio>
+                    </div>
+                </div>
+
+            </h:form>
+        </div>
+        <div class="result-section">
+            <h:outputLabel for="result" value="Результат:" class="label"/>
+            <ta:counter id="result"
+                        excludeSpaces="#{counterBean.excludeSpaces}"
+                        show="#{counterBean.show}">
+                #{counterBean.inputText}
+            </ta:counter>
+        </div>
+        <div class="filler">
+        </div>
+    </div>
+    <script type="module" src="#{request.contextPath}/resources/js/main.js"></script>
+</h:body>
+</html>
